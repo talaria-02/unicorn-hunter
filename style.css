@@ -1,0 +1,326 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --primary: #6c5ce7;
+    --primary-hover: #5649c0;
+    --success: #00b894;
+    --danger: #d63031;
+    --text-main: #ffffff;
+    --text-sub: #b2bec3;
+    --accent: #fdcb6e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    background-color: var(--bg-color);
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+/* Start Screen */
+.logo {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary), #a29bfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-sub);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.intro-box {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    border: 1px solid #333;
+}
+
+.intro-box p {
+    margin-bottom: 0.5rem;
+}
+
+/* Game Screen */
+.header {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    margin-top: -2rem; /* Pull up slightly */
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+#money-display {
+    color: var(--success);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background-color: #333;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary);
+    width: 20%;
+    transition: width 0.3s ease;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 1.5rem;
+    border: 1px solid #333;
+}
+
+.badge {
+    background-color: #333;
+    color: var(--accent);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.card-body p {
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.market-info {
+    display: flex;
+    justify-content: space-between;
+    background-color: #121212;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.value {
+    font-weight: 700;
+}
+
+.value.negative { color: var(--danger); }
+.value.positive { color: var(--success); }
+
+.action-area {
+    width: 100%;
+}
+
+.guide-text {
+    text-align: center;
+    color: var(--text-sub);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    transition: transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.btn-bet {
+    background-color: #2d3436;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+}
+
+.btn-bet:hover {
+    background-color: #3d4648;
+}
+
+.btn-bet.all-in {
+    background-color: var(--accent);
+    color: #2d3436;
+    grid-column: span 2;
+}
+
+/* Result Screen */
+.result-content {
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.result-badge {
+    font-size: 1rem;
+    padding: 6px 12px;
+    background-color: var(--success);
+    color: #000;
+}
+
+.result-badge.fail {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+.profit-text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin: 1.5rem 0;
+    color: var(--success);
+}
+.profit-text.loss { color: var(--danger); }
+
+.story-box {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.story-box h3 {
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+/* Final Screen */
+.final-score-box {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.final-score-box h2 {
+    font-size: 2.5rem;
+    color: var(--success);
+    margin: 0.5rem 0;
+}
+
+.change-rate {
+    color: var(--text-sub);
+}
+
+.rank-text {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: var(--accent);
+    font-weight: 800;
+}
