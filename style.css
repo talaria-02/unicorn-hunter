@@ -24,7 +24,16 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    min-height: 100dvh;
+    /* 모바일 브라우저 주소창 대응 */
     overflow-x: hidden;
+    /* 모바일에서 텍스트 선택 방지 (앱처럼 느낌) */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* 터치 하이라이트 제거 */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .game-container {
@@ -95,7 +104,8 @@ body {
 .header {
     width: 100%;
     margin-bottom: 1.5rem;
-    margin-top: -2rem; /* Pull up slightly */
+    margin-top: -2rem;
+    /* Pull up slightly */
 }
 
 .status-bar {
@@ -130,7 +140,7 @@ body {
     border-radius: 16px;
     padding: 1.5rem;
     width: 100%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     margin-bottom: 1.5rem;
     border: 1px solid #333;
 }
@@ -181,8 +191,13 @@ body {
     font-weight: 700;
 }
 
-.value.negative { color: var(--danger); }
-.value.positive { color: var(--success); }
+.value.negative {
+    color: var(--danger);
+}
+
+.value.positive {
+    color: var(--success);
+}
 
 .action-area {
     width: 100%;
@@ -285,7 +300,10 @@ button:active {
     margin: 1.5rem 0;
     color: var(--success);
 }
-.profit-text.loss { color: var(--danger); }
+
+.profit-text.loss {
+    color: var(--danger);
+}
 
 .story-box {
     background-color: var(--card-bg);
