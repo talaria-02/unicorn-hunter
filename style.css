@@ -342,3 +342,61 @@ button:active {
     color: var(--accent);
     font-weight: 800;
 }
+
+/* Percentage Betting Button Styles */
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 columns for 5 buttons */
+    gap: 8px;
+    /* Slightly tighter gap */
+}
+
+/* Base button style update for smaller text if needed */
+.btn-bet {
+    padding: 12px 4px;
+    /* Reduce padding to fit 5 buttons */
+    font-size: 0.85rem;
+    white-space: nowrap;
+    /* Prevent text wrapping */
+}
+
+/* PASS Button - Distinct Styling (Grey/Neutral) */
+.btn-bet.btn-pass {
+    background-color: #636e72;
+    /* Grey */
+    color: #dfe6e9;
+}
+
+.btn-bet.btn-pass:hover {
+    background-color: #b2bec3;
+    color: #2d3436;
+}
+
+/* ALL-IN Button - Distinct Styling (Accent/Danger) */
+.btn-bet.all-in {
+    background-color: var(--accent);
+    color: #2d3436;
+    grid-column: span 1;
+    /* Reset span if it was spanning before */
+    font-weight: 900;
+}
+
+.btn-bet.all-in:hover {
+    background-color: #ffeaa7;
+    transform: scale(1.05);
+    /* Slight pop effect */
+}
+
+/* Mobile responsivness for small screens */
+@media (max-width: 380px) {
+    .btn-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* Break into 2 rows on very small screens */
+    }
+
+    .btn-bet.all-in {
+        grid-column: span 2;
+        /* Make ALL-IN bigger on small screens */
+    }
+}

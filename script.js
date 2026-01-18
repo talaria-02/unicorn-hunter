@@ -127,16 +127,20 @@ function loadRound(index) {
     updateUI(state.gameRounds.length);
 }
 
-function handleBet(amountStr) {
+function handleBet(percentStr) {
     const currentRoundData = state.gameRounds[state.currentRoundIndex];
     let betAmount = 0;
+    const percent = parseInt(percentStr);
 
-    if (amountStr === 'all') {
+    if (percent === 100) {
         betAmount = state.money;
+    } else if (percent === 0) {
+        betAmount = 0;
     } else {
-        betAmount = parseInt(amountStr);
+        betAmount = Math.floor(state.money * (percent / 100));
     }
 
+    // 안전장치 (혹시 모를 오류 대비)
     if (betAmount > state.money) betAmount = state.money;
 
     const multiplier = currentRoundData.multiplier;
@@ -208,7 +212,11 @@ document.getElementById('next-btn').addEventListener('click', nextRound);
 document.getElementById('restart-btn').addEventListener('click', startGame);
 
 document.querySelectorAll('.btn-bet').forEach(btn => {
-    btn.addEventListener('click', (e) => handleBet(e.target.dataset.amount));
+    btn.addEventListener('click', (e) => {
+        // 클릭된 요소가 버튼이 아닐 경우 (예: 내부 텍스트) 대비
+        const target = e.target.closest('.btn-bet');
+        if (target) handleBet(target.dataset.percent);
+    });
 });
 
 // Functions
